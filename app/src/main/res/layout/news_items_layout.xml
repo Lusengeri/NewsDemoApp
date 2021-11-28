@@ -4,4 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/main_article_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newsArticlesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
