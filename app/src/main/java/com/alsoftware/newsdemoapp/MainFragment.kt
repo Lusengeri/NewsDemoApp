@@ -13,15 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.alsoftware.newsdemoapp.data.model.Article
+import com.alsoftware.newsdemoapp.data.model.Source
 import com.alsoftware.newsdemoapp.viewmodel.MainViewModel
 import com.alsoftware.newsdemoapp.databinding.FragmentMainBinding
 
 import kotlinx.android.synthetic.main.news_items_layout.view.*
 
 class MainFragment : Fragment() {
-    private lateinit var mainViewModel : MainViewModel
-    private val adapter = NewsListAdapter();
+    lateinit var mainViewModel : MainViewModel
+    private val newsListAdapter = NewsListAdapter()
+    private val sourceListAdapter=SourceListAdapter(this)
     private lateinit var articlesList : RecyclerView
+    private lateinit var sourcesList: RecyclerView
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -39,27 +42,44 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         configureDataSource()
         setUpArticles()
+        setUpSources()
     }
 
     private fun configureDataSource() {
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        val observer = Observer<List<Article>?> { articles ->
+        
+        val newsListObserver = Observer<List<Article>?> { articles ->
             if (articles != null) {
-                adapter.setList(articles)
+                newsListAdapter.setList(articles)
             }
         }
-        mainViewModel.getArticles().observe(viewLifecycleOwner, observer)
+
+        val sourcesListObserver = Observer<List<Source>?> { sources ->
+            if (sources != null) {
+                sourceListAdapter.setList(sources)
+            }
+        }
+        mainViewModel.getTechnologySources().observe(viewLifecycleOwner, sourcesListObserver)
+        mainViewModel.getArticles().observe(viewLifecycleOwner, newsListObserver)
     }
 
     private fun setUpArticles() {
         articlesList = binding.root.newsArticlesList
         articlesList.layoutManager = LinearLayoutManager(context)
-        articlesList.adapter = adapter
+        articlesList.adapter = newsListAdapter
         articlesList.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun setUpSources() {
+        sourcesList = binding.root.sourcesList
+        sourcesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        sourcesList.adapter = sourceListAdapter
+        sourcesList.itemAnimator = DefaultItemAnimator()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

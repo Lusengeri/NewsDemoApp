@@ -1,6 +1,7 @@
 package com.alsoftware.newsdemoapp.data.newsapi
 
 import com.alsoftware.newsdemoapp.data.model.ArticlesResponse
+import com.alsoftware.newsdemoapp.data.model.SourcesResponse
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -25,7 +26,15 @@ class RetrofitClient {
         articlesApi = retrofit.create(ArticlesApi::class.java)
     }
 
-    fun getArticles(): Call<ArticlesResponse> {
-        return articlesApi.getArticles(API_KEY,"tech")
+    fun getArticlesFromSource(sourceId: String): Call<ArticlesResponse> {
+        return articlesApi.getArticlesFromSource(API_KEY,sourceId)
+    }
+
+    fun getTechnologyArticles():Call<ArticlesResponse>{
+        return articlesApi.getTopHeadlinesByCategory(API_KEY,"technology")
+    }
+
+    fun getTechnologySources():Call<SourcesResponse>{
+        return articlesApi.getSourcesByCategory(API_KEY, "technology")
     }
 }

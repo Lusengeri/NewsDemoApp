@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/layout/news_article_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/news_items_layout.xml" value="0.18" />
         <entry key="app/src/main/res/layout/single_article_layout.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/source_bar_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/source_name_layout.xml" value="0.1" />
       </map>
     </option>
   </component>

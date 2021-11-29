@@ -22,7 +22,7 @@ data class Article(
 
     @SerializedName("source")
     @Expose
-    val source: Source? = null,
+    val source: SimpleSource? = null,
 
     @SerializedName("title")
     @Expose
