@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/singleArticleLayout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,11 +14,14 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="3dp"
+        app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:foregroundGravity="fill"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,15 +34,15 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/mainArticleSource"
-                app:layout_constraintEnd_toStartOf="@+id/mainArticleTitle"
+                app:layout_constraintBottom_toBottomOf="@id/articleSource"
+                app:layout_constraintEnd_toStartOf="@+id/articleTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_menu_gallery"
                 tools:ignore="ImageContrastCheck" />
 
             <TextView
-                android:id="@+id/mainArticleTitle"
+                android:id="@+id/articleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
@@ -50,16 +54,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mainArticleAuthor"
+                android:id="@+id/articleAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mainArticleTitle" />
+                app:layout_constraintTop_toBottomOf="@id/articleTitle" />
 
             <TextView
-                android:id="@+id/mainArticleSource"
+                android:id="@+id/articleSource"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
@@ -67,19 +71,19 @@
                 android:textColor="?attr/colorPrimary"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainArticleTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/articleTitle" />
 
             <TextView
-                android:id="@+id/mainArticlePublishDate"
+                android:id="@+id/articlePublishDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textSize="11sp"
-                app:layout_constraintStart_toEndOf="@id/mainArticleSource"
-                app:layout_constraintTop_toBottomOf="@+id/mainArticleTitle" />
+                app:layout_constraintStart_toEndOf="@id/articleSource"
+                app:layout_constraintTop_toBottomOf="@+id/articleTitle" />
 
             <TextView
-                android:id="@+id/mainArticleSummary"
+                android:id="@+id/articleSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
