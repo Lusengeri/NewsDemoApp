@@ -1,7 +1,8 @@
-package com.alsoftware.newsdemoapp
+package com.alsoftware.newsdemoapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.alsoftware.newsdemoapp.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.alsoftware.newsdemoapp
+package com.alsoftware.newsdemoapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.news_items_layout.view.*
 class MainFragment : Fragment() {
     lateinit var mainViewModel : MainViewModel
     private val newsListAdapter = NewsListAdapter()
-    private val sourceListAdapter=SourceListAdapter(this)
+    private val sourceListAdapter= SourceListAdapter(this)
     private lateinit var articlesList : RecyclerView
     private lateinit var sourcesList: RecyclerView
 
@@ -59,8 +59,8 @@ class MainFragment : Fragment() {
                 sourceListAdapter.setList(sources)
             }
         }
-        mainViewModel.getTechnologySources().observe(viewLifecycleOwner, sourcesListObserver)
-        mainViewModel.getArticles().observe(viewLifecycleOwner, newsListObserver)
+        mainViewModel.getSourcesByCategory("technology").observe(viewLifecycleOwner, sourcesListObserver)
+        mainViewModel.getArticlesByCategory("technology").observe(viewLifecycleOwner, newsListObserver)
     }
 
     private fun setUpArticles() {
@@ -81,5 +81,4 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

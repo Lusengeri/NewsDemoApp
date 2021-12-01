@@ -11,7 +11,8 @@ interface ArticlesApi {
     @GET("v2/everything")
     fun getArticlesFromSource(@Query("apiKey") apiKey: String,
                               @Query("sources") sources: String,
-                              @Query("sortBy") sortBy: String="publishedAt") : Call<ArticlesResponse>
+                              @Query("sortBy") sortBy: String="publishedAt",
+                              @Query("language") language: String="en") : Call<ArticlesResponse>
 
     @GET("v2/top-headlines")
     fun getTopHeadlinesByCategory(@Query("apiKey") apiKey: String,

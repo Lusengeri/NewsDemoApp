@@ -18,7 +18,6 @@ class ArticleRepositoryImpl : ArticleRepository {
 
     override fun getArticlesFromSource(sourceId:String): LiveData<List<Article>?> {
 
-
         retrofitClient.getArticlesFromSource(sourceId).enqueue(
             object: Callback<ArticlesResponse> {
                 override fun onFailure(call: Call<ArticlesResponse>, t: Throwable) {
@@ -42,10 +41,9 @@ class ArticleRepositoryImpl : ArticleRepository {
         return articleData
     }
 
-    override fun getTechnologyArticles(): LiveData<List<Article>?> {
+    override fun getArticlesByCategory(category: String): LiveData<List<Article>?> {
 
-
-        retrofitClient.getTechnologyArticles().enqueue(
+        retrofitClient.getArticlesByCategory(category).enqueue(
             object: Callback<ArticlesResponse> {
                 override fun onFailure(call: Call<ArticlesResponse>, t: Throwable) {
                     articleData.value = null
@@ -68,11 +66,11 @@ class ArticleRepositoryImpl : ArticleRepository {
         return articleData
     }
 
-    override fun getTechnologySources(): LiveData<List<Source>?> {
+    override fun getSourcesByCategory(category: String): LiveData<List<Source>?> {
 
         val data = MutableLiveData<List<Source>>()
 
-        retrofitClient.getTechnologySources().enqueue(
+        retrofitClient.getSourcesByCategory(category).enqueue(
             object: Callback<SourcesResponse> {
                 override fun onResponse(
                     call: Call<SourcesResponse>,

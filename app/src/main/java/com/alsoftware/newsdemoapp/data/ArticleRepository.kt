@@ -6,6 +6,6 @@ import com.alsoftware.newsdemoapp.data.model.Source
 
 interface ArticleRepository {
     fun getArticlesFromSource(sourceId: String): LiveData<List<Article>?>
-    fun getTechnologyArticles():LiveData<List<Article>?>
-    fun getTechnologySources():LiveData<List<Source>?>
+    fun getArticlesByCategory(category: String):LiveData<List<Article>?>
+    fun getSourcesByCategory(category: String):LiveData<List<Source>?>
 }

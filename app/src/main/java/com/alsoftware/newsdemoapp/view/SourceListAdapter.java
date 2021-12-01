@@ -1,4 +1,4 @@
-package com.alsoftware.newsdemoapp;
+package com.alsoftware.newsdemoapp.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alsoftware.newsdemoapp.R;
 import com.alsoftware.newsdemoapp.data.model.Source;
 
 import java.util.List;

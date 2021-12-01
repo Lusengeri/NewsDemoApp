@@ -1,4 +1,4 @@
-package com.alsoftware.newsdemoapp;
+package com.alsoftware.newsdemoapp.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
+import com.alsoftware.newsdemoapp.R;
 import com.alsoftware.newsdemoapp.data.model.Article;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -79,14 +79,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
             holder.source.setText(currentArticle.getSource().getName());
             holder.publishDate.setText(" - " + currentArticle.getPublishedAt().substring(0, 10));
             holder.articleSummary.setText(shortenSummary(currentArticle.getDescription()));
-
             Picasso.get().load(currentArticle.getUrlToImage()).into(holder.image);
         }
     }
 
     private String shortenHeading(String heading){
         String shortenedHeading;
-        if(heading.length()>48){
+        if(heading != null && heading.length()>48){
             shortenedHeading=heading.substring(0,45);
             shortenedHeading+="...";
             return shortenedHeading;
@@ -97,11 +96,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
 
     private String shortenSummary(String summary){
         String shortenedSummary;
-        if(summary.length()>150){
+        if(summary != null && summary.length()>150) {
             shortenedSummary=summary.substring(0,147);
             shortenedSummary+="...";
             return shortenedSummary;
-        }else{
+        } else{
             return summary;
         }
     }

@@ -1,4 +1,4 @@
-package com.alsoftware.newsdemoapp
+package com.alsoftware.newsdemoapp.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.alsoftware.newsdemoapp.R
 
 class WebFragment : Fragment() {
     private lateinit var myWebView : WebView
