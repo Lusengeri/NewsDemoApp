@@ -36,7 +36,7 @@ public class SourceListAdapter extends RecyclerView.Adapter<SourceListAdapter.So
         holder.sourceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.mainViewModel.getArticlesFromSource(currentSource.getId());
+                listener.loadArticles(currentSource.getId());
             }
         });
     }
@@ -59,6 +59,7 @@ public class SourceListAdapter extends RecyclerView.Adapter<SourceListAdapter.So
         public TextView sourceName;
         public CardView sourceCard;
         public View view;
+
         public SourceListViewHolder(@NonNull View itemView) {
             super(itemView);
             view=itemView;

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,11 +22,13 @@ import com.alsoftware.newsdemoapp.databinding.FragmentMainBinding
 import kotlinx.android.synthetic.main.news_items_layout.view.*
 
 class MainFragment : Fragment() {
-    lateinit var mainViewModel : MainViewModel
+    private lateinit var mainViewModel : MainViewModel
     private val newsListAdapter = NewsListAdapter()
     private val sourceListAdapter= SourceListAdapter(this)
     private lateinit var articlesList : RecyclerView
     private lateinit var sourcesList: RecyclerView
+    private lateinit var articlesProgress: ProgressBar
+    private lateinit var noArticlesMessage: TextView
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +37,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,14 +50,25 @@ class MainFragment : Fragment() {
 
     private fun configureDataSource() {
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        
+
         val newsListObserver = Observer<List<Article>?> { articles ->
+
             if (articles != null) {
-                newsListAdapter.setList(articles)
+                articlesProgress.visibility = View.GONE
+
+                if (articles.isEmpty()) {
+                    noArticlesMessage.visibility = View.VISIBLE
+                } else {
+                    articlesList.scrollToPosition(0)
+                    articlesList.visibility = View.VISIBLE
+                    newsListAdapter.setList(articles)
+                }
+            } else {
+                articlesProgress.visibility = View.VISIBLE
             }
         }
-
         val sourcesListObserver = Observer<List<Source>?> { sources ->
+
             if (sources != null) {
                 sourceListAdapter.setList(sources)
             }
@@ -64,15 +78,24 @@ class MainFragment : Fragment() {
     }
 
     private fun setUpArticles() {
+        articlesProgress = binding.root.articlesProgress
+        noArticlesMessage = binding.root.noArticlesMessage
         articlesList = binding.root.newsArticlesList
         articlesList.layoutManager = LinearLayoutManager(context)
         articlesList.adapter = newsListAdapter
         articlesList.itemAnimator = DefaultItemAnimator()
     }
 
+    fun loadArticles(sourceId: String) {
+        articlesProgress.visibility = View.VISIBLE
+        articlesList.visibility = View.INVISIBLE
+        noArticlesMessage.visibility = View.INVISIBLE
+        mainViewModel.getArticlesFromSource(sourceId)
+    }
+
     private fun setUpSources() {
         sourcesList = binding.root.sourcesList
-        sourcesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        sourcesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         sourcesList.adapter = sourceListAdapter
         sourcesList.itemAnimator = DefaultItemAnimator()
     }

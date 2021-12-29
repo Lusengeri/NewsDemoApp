@@ -24,14 +24,6 @@ class RetrofitClient {
     }
 
     init {
-        /*
-        val ai: ApplicationInfo = (GlobalApplication.context.packageManager
-            .getApplicationInfo(GlobalApplication.context.packageName, PackageManager.GET_META_DATA)as ApplicationInfo)
-        val value = ai.metaData["keyValue"]
-
-        API_KEY = value.toString()
-
-         */
         val builder = OkHttpClient.Builder()
         val okHttpClient = builder.build()
         val retrofit = Retrofit.Builder()
